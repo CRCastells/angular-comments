@@ -1,4 +1,24 @@
 <h1>Comments</h1>
+<div>
+  Add a comment:
+  <input type="text" [(ngModel)]='comment.author' placeholder="Name">
+  <textarea [(ngModel)]='comment.content'></textarea>
+  <input type="submit" (click)='createComment(comment)' value="Post a comment">
+</div>
 <ul>
-    <li *ngFor="let comment of comments">{{comment}}</li>
+  <dl *ngFor="let comment of comments">
+    <div *ngIf='comment.editing else default'>
+      <input type="text" [(ngModel)]='comment.author'>
+      <textarea type="text" [(ngModel)]='comment.content'></textarea>
+      <input type="submit" (click)='editComment(comment)'>
+    </div>
+    <ng-template #default>
+      <dt>{{comment.author}}</dt>
+      <dd>{{comment.content}}</dd>
+      <dd>
+        <button (click)='deleteComment(comment)'>Delete</button>
+        <button (click)='comment.editing=true'>EDIT</button>
+      </dd>
+    </ng-template>
+  </dl>
 </ul>
