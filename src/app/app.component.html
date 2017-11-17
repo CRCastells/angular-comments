@@ -9,10 +9,10 @@
 </div>
 <ul class="list-group ml-3 container">
   <li *ngFor="let comment of comments" class="list-group-item">
-    <div *ngIf='comment.editing else default'>
-      <input type="text" [(ngModel)]='comment.author'>
-      <textarea type="text" [(ngModel)]='comment.content'></textarea>
-      <input type="submit" (click)='editComment(comment)'>
+    <div *ngIf='comment.editing else default' class="form-group col-4">
+      <input class="form-control m-2" type="text" [(ngModel)]='comment.author'>
+      <textarea class="form-control m-2" type="text" [(ngModel)]='comment.content'></textarea>
+      <input class="btn btn-success m-2" type="submit" (click)='editComment(comment)'>
     </div>
     <ng-template #default>
       <dt class="text-capitalize">{{comment.author}}</dt>
