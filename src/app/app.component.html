@@ -1,24 +1,26 @@
 <h1>Comments</h1>
-<div>
-  Add a comment:
-  <input type="text" [(ngModel)]='comment.author' placeholder="Name">
-  <textarea [(ngModel)]='comment.content'></textarea>
-  <input type="submit" (click)='createComment(comment)' value="Post a comment">
+<div class="form-group col-md-5 border p-2 bg-light ml-3">
+  <h3>Add a comment:</h3>
+  <label for="Name">Name:</label>
+  <input class="form-control" type="text" [(ngModel)]='comment.author' placeholder="Name">
+  <label for="content mt-2">Leave a comment below!</label>
+  <textarea name='content' class="form-control" [(ngModel)]='comment.content'></textarea>
+  <input class="btn btn-success mt-2" type="submit" (click)='createComment(comment)' value="Post a comment">
 </div>
-<ul>
-  <dl *ngFor="let comment of comments">
+<ul class="list-group ml-3 container">
+  <li *ngFor="let comment of comments" class="list-group-item">
     <div *ngIf='comment.editing else default'>
       <input type="text" [(ngModel)]='comment.author'>
       <textarea type="text" [(ngModel)]='comment.content'></textarea>
       <input type="submit" (click)='editComment(comment)'>
     </div>
     <ng-template #default>
-      <dt>{{comment.author}}</dt>
-      <dd>{{comment.content}}</dd>
+      <dt class="text-capitalize">{{comment.author}}</dt>
+      <dd class="" >{{comment.content}}</dd>
       <dd>
-        <button (click)='deleteComment(comment)'>Delete</button>
-        <button (click)='comment.editing=true'>EDIT</button>
+        <button class="btn btn-danger" (click)='deleteComment(comment)'>Delete</button>
+        <button class="btn btn-primary"  (click)='comment.editing=true'>EDIT</button>
       </dd>
     </ng-template>
-  </dl>
+  </li>
 </ul>
